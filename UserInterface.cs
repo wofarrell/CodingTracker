@@ -1,10 +1,17 @@
 using Spectre.Console;
 using static CodingTracker.Enums;
+using CodingTracker.Controllers;
 
 namespace CodingTracker;
 
 internal class UserInterface
 {
+
+    private readonly LogInsert _logInsert = new();
+    private readonly LogDelete _logDelete = new();
+    private readonly LogUpdate _logUpdate = new();
+    private readonly LogView _logView = new();
+
     internal void MainMenu()
     {
         while (true)
@@ -22,17 +29,17 @@ internal class UserInterface
 
             switch (actionChoice)
             {
-                case MenuAction.ViewLogs:
-                    ViewLogs();
+                case MenuAction.LogInsert:
+                    LogInsert();
                     break;
-                case MenuAction.AddLog:
-                    AddLog();
+                case MenuAction.LogDelete:
+                    LogDelete();
                     break;
-                case MenuAction.DeleteLog:
-                    DeleteLog();
+                case MenuAction.LogUpdate:
+                    LogUpdate();
                     break;
-                case MenuAction.UpdateLog:
-                    UpdateLog();
+                case MenuAction.LogView:
+                    LogView();
                     break;
             }
 
@@ -40,25 +47,27 @@ internal class UserInterface
         }
     }
 
-    private void ViewLogs()
-    {
 
+
+
+    private void LogInsert()
+    {
+        _logInsert.LogOperation();
     }
 
-
-    private void AddLog()
+    private void LogDelete()
     {
-
+        _logDelete.LogOperation();
     }
 
-    private void DeleteLog()
+    private void LogUpdate()
     {
-
+        _logUpdate.LogOperation();
     }
 
-    private void UpdateLog()
+    private void LogView()
     {
-
+        _logView.LogOperation();
     }
 
 

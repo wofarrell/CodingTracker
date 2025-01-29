@@ -25,16 +25,22 @@ The user should be able to input the start and end times manually.
 */
 
 
+
+using CodingTracker.Controllers;
 using CodingTracker;
 
+namespace Main;
 
 class Program
 {
     //int rowTotal = 0;
     static void Main(string[] args)
     {
+        DatbaseController dbCreate = new();
+        
         UserInterface userInterface = new();
         userInterface.MainMenu();
     }
 }
+
 

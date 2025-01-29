@@ -4,10 +4,10 @@ internal class Enums
 {
     internal enum MenuAction
     {
-        ViewLogs,
-        AddLog,
-        DeleteLog,
-        UpdateLog
+        LogInsert,
+        LogDelete,
+        LogUpdate,
+        LogView
     }
 
 }

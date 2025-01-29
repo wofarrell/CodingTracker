@@ -19,3 +19,4 @@ C:\Users\Sandwich\OneDrive\Coding\CodingTracker\bin\Debug\net9.0\de\Spectre.Cons
 C:\Users\Sandwich\OneDrive\Coding\CodingTracker\bin\Debug\net9.0\fr\Spectre.Console.Cli.resources.dll
 C:\Users\Sandwich\OneDrive\Coding\CodingTracker\bin\Debug\net9.0\sv\Spectre.Console.Cli.resources.dll
 C:\Users\Sandwich\OneDrive\Coding\CodingTracker\obj\Debug\net9.0\CodingTr.3232F510.Up2Date
+C:\Users\Sandwich\OneDrive\Coding\CodingTracker\obj\Debug\net9.0\CodingTracker.sourcelink.json
