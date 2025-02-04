@@ -1,0 +1,16 @@
+using System.Data;
+using Dapper;
+
+namespace CodingTracker.Database;
+
+public class DbConnectionFactory : IDbConnectionFactory
+{
+
+    public 
+
+}
+
+public interface IDbConnectionFactory
+{
+    SqlConnection connection = new SqlConnection("server = localhost]]")
+}

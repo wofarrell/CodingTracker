@@ -36,7 +36,9 @@ class Program
     //int rowTotal = 0;
     static void Main(string[] args)
     {
+        //create obj of create database class then call it to see if db is created
         DatbaseController dbCreate = new();
+        dbCreate.initializeDatabase();
         
         UserInterface userInterface = new();
         userInterface.MainMenu();

@@ -47,9 +47,6 @@ internal class UserInterface
         }
     }
 
-
-
-
     private void LogInsert()
     {
         _logInsert.LogOperation();
