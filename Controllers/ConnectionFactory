@@ -12,5 +12,5 @@ public class DbConnectionFactory : IDbConnectionFactory
 
 public interface IDbConnectionFactory
 {
-    SqlConnection connection = new SqlConnection("server = localhost]]")
+    SqlConnection connection = new SqlConnection("server = localhost")
 }

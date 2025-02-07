@@ -15,7 +15,7 @@ internal class DatbaseController
     {
         //connection to sqlite database
 
-        string curFile = @"C:\Users\Sandwich\OneDrive\Coding\CodingTracker\";
+        string curFile = @"C:\Users\Sandwich\OneDrive\Coding\CodingTracker\CodingTracker.db";
 
 
         if (!File.Exists(curFile))
@@ -34,8 +34,8 @@ internal class DatbaseController
                         id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
                         name TEXT,
                         starttime TEXT,
-                        endttime TEXT
-                        totaltime TEXT
+                        endtime TEXT,
+                        totaltime INTEGER
                     );
                 ";
                 //Date Format TEXT as ISO8601 strings ("YYYY-MM-DD HH:MM:SS.SSS").
@@ -45,6 +45,10 @@ internal class DatbaseController
             }
 
         }
+
+    }
+}
+
         /*
         if (!File.Exists(curFile))
         {
@@ -82,6 +86,3 @@ internal class DatbaseController
 
             }
         */
-    }
-}
-
