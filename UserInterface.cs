@@ -2,6 +2,16 @@ using Spectre.Console;
 using static CodingTracker.Enums;
 using CodingTracker.Controllers;
 
+
+using System.Data.SqlClient;
+using System.Data.SQLite;
+using System.Data.SqlTypes;
+using CodingTracker.Models;
+
+using Dapper;
+using System.Data;
+using System.Reflection.Metadata.Ecma335;
+
 namespace CodingTracker;
 
 internal class UserInterface
@@ -14,7 +24,9 @@ internal class UserInterface
 
     internal void MainMenu()
     {
-        while (true)
+
+        bool menuBool = true;
+        while (menuBool)
         {
             Console.Clear();
 
@@ -33,13 +45,21 @@ internal class UserInterface
                     LogInsert();
                     break;
                 case MenuAction.LogDelete:
+                    LogView();
                     LogDelete();
                     break;
                 case MenuAction.LogUpdate:
+                    LogView();
+                    
                     LogUpdate();
                     break;
                 case MenuAction.LogView:
                     LogView();
+                    AnsiConsole.MarkupLine("Press Any Key to Continue.");
+                    Console.ReadKey();
+                    break;
+                case MenuAction.Exit:
+                    menuBool = false;
                     break;
             }
 
@@ -68,5 +88,6 @@ internal class UserInterface
     }
 
 
+    
 
 }

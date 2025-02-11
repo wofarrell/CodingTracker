@@ -16,20 +16,36 @@ internal class LogView : BaseController, IBaseController
         {
             connection.Open();
 
+            var table = new Table();
+            table.Border(TableBorder.Rounded);
+
+            table.AddColumn("[white]Id[/]");
+            table.AddColumn("[white]Name[/]");
+            table.AddColumn("[white]StartTime[/]");
+            table.AddColumn("[white]EndTime[/]");
+            table.AddColumn("[white]TotalTime[/]");
+
             string selectQuery = "SELECT * FROM CodingLog;";
 
             var logs = connection.Query<LogItem>(selectQuery);
 
-            Console.WriteLine("ID | Name  | StartTime           | EndTime             | TotalTime");
-            Console.WriteLine("------------------------------------------------------------------------");
-
+      
             foreach (var log in logs)
             {
-                Console.WriteLine($"{log.Id}  | {log.Name} | {log.StartTime} | {log.EndTime} | {log.TotalTime} minutes");
+                table.AddRow(
+                $"[yellow]{log.Id}[/]",
+                $"[cyan]{log.Name}[/]",
+                $"[cyan]{log.StartTime}[/]",
+                $"[green]{log.EndTime}[/]",
+                $"[blue]{log.TotalTime}[/]"
+                );
+
             }
 
+            AnsiConsole.Write(table);
+
             connection.Close();
-            Console.ReadKey();
+
 
         }
 

@@ -7,7 +7,8 @@ internal class Enums
         LogInsert,
         LogDelete,
         LogUpdate,
-        LogView
+        LogView,
+        Exit
     }
 
 }
