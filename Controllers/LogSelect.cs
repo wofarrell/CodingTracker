@@ -17,7 +17,7 @@ internal class LogSelect
         string? readEntry = "";
         bool validEntry = false;
         int updateChoice = 0;
-        LogItem ?choice = null;
+        LogItem? choice = null;
 
         bool exitRowChoiceLoop = false;
         do
@@ -52,6 +52,7 @@ internal class LogSelect
 
                             if (choice != null)
                             {
+                            
                                 var table = new Table();
                                 table.Border(TableBorder.Rounded);
 
@@ -61,10 +62,12 @@ internal class LogSelect
                                 table.AddColumn("[white]EndTime[/]");
                                 table.AddColumn("[white]TotalTime[/]");
 
-                                string selectQuery = "SELECT * FROM CodingLog WHERE id = @rowChoice";
-                                var updatedRow = connection.Query<LogItem>(selectQuery, new { updateChoice });
+                                string selectQuery = "SELECT * FROM CodingLog WHERE id = @updateChoice;";
 
-                                foreach (var log in updatedRow)
+                                var logs = connection.Query<LogItem>(selectQuery,  new { updateChoice });
+
+
+                                foreach (var log in logs)
                                 {
                                     table.AddRow(
                                     $"[yellow]{log.Id}[/]",
@@ -73,14 +76,20 @@ internal class LogSelect
                                     $"[green]{log.EndTime}[/]",
                                     $"[blue]{log.TotalTime}[/]"
                                     );
+
                                 }
+
                                 AnsiConsole.Write(table);
                                 exitRowChoiceLoop = true;
+
                             }
                             else
                             {
                                 Console.WriteLine("No row found after update.");
                             }
+
+                             connection.Close();
+                            
                         }
 
                     }

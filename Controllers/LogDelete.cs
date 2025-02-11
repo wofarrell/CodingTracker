@@ -10,26 +10,66 @@ namespace CodingTracker.Controllers;
 internal class LogDelete : IBaseController
 {
 
-    
+
     public void LogOperation()
     {
-        //show coding logs
+        //call log select to pick row to update
+        LogItem updateChoice = LogSelect.SelectLogId();
+        int updateChoiceId = updateChoice.Id;
+        bool answerLoopEndTime = false;
 
-        //int selectedId = LogSelect.SelectLogId();
-        
+        do
+        {
+            if (updateChoice != null)
+            {
 
-        Console.WriteLine("set up");
-        Console.ReadKey();
+                AnsiConsole.Markup("\n1. [yellow]Row Id selected:[/]" + $"{updateChoiceId}\n");
+                //string updateColumn = "";
 
-        //pick habit to update by id
-        //run statement to delete by id, primary key
-        //show results
+                if (updateChoiceId > 0)
+                {
 
+                    int rowChoice = updateChoiceId;
+                    try
+                    {
+                        using (var connection = new SQLiteConnection("Data Source=CodingTracker.db"))
+                        {
+                            connection.Open();
+
+                            //Dapper does NOT support column name parameterization. So we're turning     
+                            //string Name = updateName;
+                            //create variable to use in Dapper commands
+
+                            var deleteLogQuery =
+                            @"
+                                        DELETE from CodingLog WHERE id = @rowChoice;
+                                    ";
+                            var parameters = new
+                            {
+                                rowChoice = rowChoice // The row ID to update
+                            };
+
+                            int rowsAffected = connection.Execute(deleteLogQuery, parameters);
+
+                            if (rowsAffected > 0)
+                            {
+                                connection.Close();
+                                AnsiConsole.MarkupLine($"Record {rowChoice} deleted, press any key to continue.");
+                                Console.ReadKey();
+                                answerLoopEndTime = true;
+                            }
+                            else
+                            {
+                                Console.WriteLine("\nNo record found, please enter a valid ID or write 'return'");
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Error: {ex.Message}");
+                    }
+                }
+            }
+        } while (!answerLoopEndTime);
     }
-
-    
-
-
-
-
 }
